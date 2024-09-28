@@ -26,41 +26,6 @@ data "aws_ssm_parameter" "subnet_3" {
   name = "/rds/subnet_3"
 }
 
-resource "aws_internet_gateway" "eks_igw" {
-  vpc_id = data.aws_ssm_parameter.vpc_id.value
-  tags = {
-    Name = "eks-igw"
-  }
-}
-
-resource "aws_route_table" "eks_public_rt" {
-  vpc_id = data.aws_ssm_parameter.vpc_id.value
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.eks_igw.id
-  }
-
-  tags = {
-    Name = "eks-public-rt"
-  }
-}
-
-resource "aws_route_table_association" "public_rt_assoc_1" {
-  subnet_id      = data.aws_ssm_parameter.subnet_1.value
-  route_table_id = aws_route_table.eks_public_rt.id
-}
-
-resource "aws_route_table_association" "public_rt_assoc_2" {
-  subnet_id      = data.aws_ssm_parameter.subnet_2.value
-  route_table_id = aws_route_table.eks_public_rt.id
-}
-
-resource "aws_route_table_association" "public_rt_assoc_3" {
-  subnet_id      = data.aws_ssm_parameter.subnet_3.value
-  route_table_id = aws_route_table.eks_public_rt.id
-}
-
 resource "aws_iam_role" "eks_cluster_role" {
   name = "eks-cluster-role"
   
