@@ -56,7 +56,7 @@ resource "aws_route_table_association" "public_rt_assoc_2" {
   route_table_id = aws_route_table.eks_public_rt.id
 }
 
-resource "aws_route_table_association" "public_rt_assoc_2" {
+resource "aws_route_table_association" "public_rt_assoc_3" {
   subnet_id      = data.aws_ssm_parameter.subnet_3.value
   route_table_id = aws_route_table.eks_public_rt.id
 }
