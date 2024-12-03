@@ -120,7 +120,7 @@ resource "aws_eks_node_group" "eks_node_group" {
     max_unavailable_percentage = 50
   }
 
-  instance_types = ["t2.micro"]
+  instance_types = ["t2.small"]
   capacity_type = "SPOT"
 
   depends_on = [
