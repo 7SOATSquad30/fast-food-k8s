@@ -111,8 +111,8 @@ resource "aws_eks_node_group" "eks_node_group" {
   subnet_ids      = [data.aws_ssm_parameter.subnet_1.value, data.aws_ssm_parameter.subnet_2.value, data.aws_ssm_parameter.subnet_3.value]
 
   scaling_config {
-    desired_size = 1
-    max_size     = 2
+    desired_size = 2
+    max_size     = 3
     min_size     = 1
   }
 
